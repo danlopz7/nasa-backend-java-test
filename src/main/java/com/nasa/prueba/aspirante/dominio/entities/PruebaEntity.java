@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Getter @Setter @NoArgsConstructor
@@ -30,10 +28,7 @@ public class PruebaEntity {
     @Column(name = "nasa_id")
     private String nasaId;
 
-    //@CreatedDate
     @Column(name = "created_dt", updatable = false)
-    //@Temporal(TemporalType.DATE)
-    //@DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime createdDt;
 
     @PrePersist
