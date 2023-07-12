@@ -1,7 +1,7 @@
 package com.nasa.prueba.aspirante.infraestructura.clientrest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.nasa.prueba.aspirante.aplicacion.taskscheduler.PruebaTask2;
+import com.nasa.prueba.aspirante.aplicacion.taskscheduler.PruebaTask;
 import com.nasa.prueba.aspirante.dominio.entities.PruebaEntity;
 import com.nasa.prueba.aspirante.infraestructura.clientrest.apiservice.ApiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +21,10 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("/")
 public class PruebaClienteRest {
 
+    /**
+     *  Controlador que solicita consumir la API
+     */
+
     @Autowired
     private ApiService service;
 
@@ -28,16 +32,17 @@ public class PruebaClienteRest {
     private TaskScheduler taskScheduler;
 
     @Autowired
-    private PruebaTask2 task2;
+    private PruebaTask pruebaTask;
 
     @GetMapping("api1")
     public ResponseEntity<String> getApi() throws JsonProcessingException, URISyntaxException {
-        return ResponseEntity.ok(service.getAPI());
+        return ResponseEntity.ok(service.consumeApi());
     }
 
     @GetMapping("api2/{query}")
     public ResponseEntity<List<PruebaEntity>> getApi2(@PathVariable String query) throws JsonProcessingException, URISyntaxException {
-        taskScheduler.schedule(task2, new PeriodicTrigger(1, TimeUnit.SECONDS));
-        return ResponseEntity.ok(service.getAPI2(query));
+        service.setQuery(query);
+        taskScheduler.schedule(pruebaTask, new PeriodicTrigger(1, TimeUnit.SECONDS));
+        return ResponseEntity.ok(service.consumeApi2());
     }
 }

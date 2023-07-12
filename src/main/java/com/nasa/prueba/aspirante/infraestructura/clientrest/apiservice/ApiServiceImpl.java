@@ -18,14 +18,24 @@ import java.util.List;
 @Service
 public class ApiServiceImpl implements ApiService {
 
+    /**
+     *  Servicio que consume la API
+     */
+
     @Autowired
     private RestTemplate restTemplate;
 
     @Value("${nasa.base-url}")
     private String baseUrl;
 
+    private String query2;
+
+    public ApiServiceImpl() {
+        this.query2 = null;
+    }
+
     @Override
-    public String getAPI() throws JsonProcessingException, URISyntaxException {
+    public String consumeApi() throws JsonProcessingException, URISyntaxException {
 
         String query = "?q=apollo 2011";
         String url = baseUrl + query.replace(" ", "%");
@@ -55,20 +65,8 @@ public class ApiServiceImpl implements ApiService {
     }
 
     @Override
-    public List<PruebaEntity> getAPI2(String query) throws JsonProcessingException, URISyntaxException {
-
-        /*MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        params.add("q", "apollo 2011");
-        String url2 = "https://images-api.nasa.gov/search";
-        String encodedUrl = UriComponentsBuilder.fromHttpUrl(url2)
-                .queryParams(params)
-                .toUriString();
-        System.out.println("encoded " + encodedUrl);
-        String decoded = URLDecoder.decode(encodedUrl, StandardCharsets.UTF_8);
-        System.out.println("decoded " + decoded);
-        decoded.replace(" ", "%");
-        System.out.println("decoded again " + decoded);*/
-        String baseQuery = "?q=" + query;
+    public List<PruebaEntity> consumeApi2() throws JsonProcessingException, URISyntaxException {
+        String baseQuery = "?q=" + this.query2;
         String url = baseUrl + baseQuery.replace(" ", "%");
         System.out.println(url);
 
@@ -77,8 +75,8 @@ public class ApiServiceImpl implements ApiService {
 
         ObjectMapper objectMapper = new ObjectMapper();
         NasaApiResponse response = objectMapper.readValue(jsonResponse, NasaApiResponse.class);
-
         NasaItem[] items = response.getCollection().getItems();
+
         List<PruebaEntity> parsedList = new ArrayList<>();
 
         for (NasaItem item : items) {
@@ -94,8 +92,14 @@ public class ApiServiceImpl implements ApiService {
             p.setNasaId(nasaId);
             parsedList.add(p);
         }
+
         System.out.println(parsedList.size());
         return parsedList;
+    }
+
+    @Override
+    public void setQuery(String q) {
+        this.query2 = q;
     }
 
 }
