@@ -1,8 +1,6 @@
-																[ORIGEN](http://www.origencorp.net/) 
+
 																	JAVA Nasa Technical Test ✍
 										
-Este test es para poder aplicar a la posición de JAVA Developer. Una vez accedas a este repositorio, sigue los siguientes pasos e indicaciones, por favor leer detalladamente.  
-
 Herramientas a instalar 
 > Instalar Java versión 11.
  
@@ -62,7 +60,7 @@ Nota:
 
 ## API NASA
 
-Para esta prueba se utilizara una API expuesta por la NASA, la cuál consiste en realizar busquedas mediante nombre y esta nos retornara todos los registros que convergan. Para mas información y detalle, puede revisar el siguiente enlace [check out the NASA-API documentation here](https://images.nasa.gov/docs/images.nasa.gov_api_docs.pdf).
+Se utilizara una API expuesta por la NASA, la cuál consiste en realizar busquedas mediante nombre y esta nos retornara todos los registros que convergan. Para mas información y detalle, puede revisar el siguiente enlace [check out the NASA-API documentation here](https://images.nasa.gov/docs/images.nasa.gov_api_docs.pdf).
 
 La API del tipo GET que consumiremos sera la siguiente
 > https://images-api.nasa.gov/search?q={PARAMETRO_BUSQUEDA}
@@ -116,11 +114,8 @@ En el documento compartido [check out the NASA-API documentation here](https://i
 }
 ```
 
-## ¿Qué esperamos ? 
-Esperamos que su código funcione sin errores e implemente las siguientes características:
-
-El aplicativo a desarrollar se resumen en tres tareas principales:
-### Tarea 1
+El aplicativo a desarrollar se resumen en tres objetivos principales:
+### Objetivo 1
 Crear una tabla a nivel de DB la cual contenga los campos 
 - href
 - center
@@ -131,7 +126,7 @@ Crear una tabla a nivel de DB la cual contenga los campos
 - A la vez se necesita que exista un campo de auditoría para guardar la fecha y hora de creación del registro, el campo puede ser llamado como usted desee. 
 - No olvidar el campo ID y que sea autoincrementable. Queda a su elección de que manera hara que el campo ID sea autoincrementable. 
 
-### Tarea 2
+### Objetivo 2
 Que se pueda consumir el servicio  explicada en el apartado API NASA; esta tarea debe realizarse de manera automática, ejecutarse cada 1 minuto y almacenar los valores obtenidos de la respuesta a nivel de DB. Los valores a tener que guardar serán los sguientes: 
  1. href : Ubicada al mismo nivel de la propiedad data (Se indica con una flecha)
  ```
@@ -194,20 +189,11 @@ Que se pueda consumir el servicio  explicada en el apartado API NASA; esta tarea
  ```
 
 #### Importante
-- Tomar en cuenta que la propiedad "items" es un arreglo
+- La propiedad "items" es un arreglo
 - La propiedad "data" es un arreglo y se busca que solo se utilice la primera posición de dicha propiedad (extraer valores y guardar en DB)
 
  
-### Tarea 3
+### Objetivo 3
 Crear una API del tipo GET con la cual podamos extraer los datos guardado en la DB y poder visualizarlos en POSTMAN en forma de listado, estos deben ser listado de manera descendente por ID. 
-
-También esperamos que su código sea un reflejo de usted mismo en el trabajo, por lo que estaremos atentos a las elecciones que hará con respecto a la legibilidad y rendimiento del código.
-
-## Submission
-Una vez que complete la prueba, envíe todo el proyecto a **su propio repositorio y hágalo público** y envíenos su enlace de repositorio a sramos@origencorp.net o hello@origencorp.net antes de la hora y la fecha límite para que podamos clonar su proyecto. Más tarde programaremos el día y la hora para realizar la entrevista técnica.
-
-
-## ¡Ahora estás listo, Happy Coding! 👊😎
-
 
 									
